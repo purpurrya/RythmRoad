@@ -1,19 +1,17 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './assets/pages/Home'; 
+import TableView from './assets/pages/TableView';  
 
-import "./assets/css/styles.css";
-import "./assets/css/table_styles.css";
-
-import Home from "./components/Home";
-import TableView from "./components/TableView";
-
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/table" element={<TableView />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+export default App;
