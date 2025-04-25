@@ -46,9 +46,6 @@ function Home() {
           <p>Your Melodic Destination:</p>
           <p> Discover, Dream, and Play On!</p>
         </div>
-        {/* <div className="main-image">
-          <img src={menuImg} alt="Music Store" />
-        </div> */}
         <Slider />
       </section>
 

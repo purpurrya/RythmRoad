@@ -102,19 +102,6 @@ nav ul li a.active {
   line-height: 1.5;
 }
 
-.main-image {
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 40px;
-}
-
-.main-image img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-}
-
 .contact-container {
   max-width: 600px;
   margin: 50px auto;
