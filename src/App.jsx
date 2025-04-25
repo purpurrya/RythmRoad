@@ -1,17 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './assets/pages/Home'; 
-import TableView from './assets/pages/TableView';  
+import Home from './assets/pages/Home.jsx'; 
+import TableView from './assets/pages/TableView.jsx';  
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/table" element={<TableView />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
