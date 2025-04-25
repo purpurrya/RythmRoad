@@ -1,27 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
 import '../css/burger.css';
-
 import cartImg from '../images/cart.png';
 import userImg from '../images/user.png';
- 
 
 function BurgerMenu() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
-  const toggleMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMenu = () => setMobileMenuOpen(prevState => !prevState);
 
+  // Close menu when clicking outside of the menu
   useEffect(() => {
-    const handleClickOutside = () => setMobileMenuOpen(false); 
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target) && !burgerRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
 
-    document.querySelector('.nav').addEventListener('click', handleClickOutside);
-
+    document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -32,7 +30,7 @@ function BurgerMenu() {
       <div 
         className={`burger ${isMobileMenuOpen ? 'active' : ''}`} 
         onClick={toggleMenu}
-        ref={burgerRef} 
+        ref={burgerRef}
       >
         <span></span>
         <span></span>
