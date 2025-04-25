@@ -21,10 +21,10 @@ const questions = [
   },
   {
     id: 3,
-    text: 'Как называется техника игры на гитаре, при которой струны щипаются пальцами одной руки, а другой создаются аккорды?',
-    type: 'single',
-    options: ['Пальцевая техника', 'Стригинг', 'Плетение', 'Техникой альтернэйт-пика'],
-    correctAnswer: 'Пальцевая техника',
+    text: 'Какие техники относятся к игре пальцами на гитаре?',
+    type: 'multiple',
+    options: ['Пика', 'Фингерстайл', 'Плетение', 'Альтернэйт-пик'],
+    correctAnswer: ['Пика', 'Фингерстайл'],
   },
   {
     id: 4,
@@ -69,11 +69,11 @@ const questions = [
     correctAnswer: 'Pink Floyd',
   },
   {
-    id: 10,
-    text: 'Какой тип гитары предпочитают многие рок-музыканты для игры в стиле метал?',
-    type: 'single',
-    options: ['Акустическая гитара', 'Классическая гитара', 'Электрогитара', '12-струнная гитара'],
-    correctAnswer: 'Электрогитара',
+    id: 11,
+    text: 'Какие из следующих групп относятся к жанру хард-рок?',
+    type: 'multiple',
+    options: ['AC/DC', 'Nirvana', 'Deep Purple', 'Coldplay'],
+    correctAnswer: ['AC/DC', 'Deep Purple'],
   },
 ];
 
@@ -84,20 +84,42 @@ function Quiz() {
 
   const question = questions[current];
 
-  const handleInput = (value) => {
-    setAnswers((prevAnswers) => ({ ...prevAnswers, [question.id]: value }));
+  const handleInput = (value, isChecked) => {
+    if (question.type === 'single') {
+      setAnswers((prev) => ({ ...prev, [question.id]: value }));
+    } else {
+      setAnswers((prev) => {
+        const currentAnswers = prev[question.id] || [];
+        const updatedAnswers = isChecked
+          ? [...currentAnswers, value]
+          : currentAnswers.filter((v) => v !== value);
+        return { ...prev, [question.id]: updatedAnswers };
+      });
+    }
   };
 
   const next = () => {
-    if (!answers[question.id]) return;
+    if (!answers[question.id] || answers[question.id].length === 0) return;
 
-    const isCorrect = answers[question.id] === question.correctAnswer;
+    const userAnswer = answers[question.id];
+    let isCorrect = false;
+
+    if (question.type === 'single') {
+      isCorrect = userAnswer === question.correctAnswer;
+    } else if (question.type === 'multiple') {
+      const correctSet = new Set(question.correctAnswer);
+      const userSet = new Set(userAnswer);
+      isCorrect =
+        correctSet.size === userSet.size &&
+        [...correctSet].every((val) => userSet.has(val));
+    }
+
     if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
+      setScore((prev) => prev + 1);
     }
 
     if (current < questions.length - 1) {
-      setCurrent((prevCurrent) => prevCurrent + 1);
+      setCurrent((prev) => prev + 1);
     } else {
       const finalScore = score + (isCorrect ? 1 : 0);
       alert(`Спасибо за участие! Ваш результат: ${finalScore} из ${questions.length}`);
@@ -121,6 +143,25 @@ function Quiz() {
                     value={opt}
                     checked={answers[question.id] === opt}
                     onChange={() => handleInput(opt)}
+                  />
+                </span>
+              </label>
+            ))}
+          </div>
+        )}
+
+        {question.type === 'multiple' && (
+          <div className="quiz-options">
+            {question.options.map((opt) => (
+              <label key={opt}>
+                <span className="option-text">{opt}</span>
+                <span className="option-control">
+                  <input
+                    type="checkbox"
+                    name={`q${question.id}`}
+                    value={opt}
+                    checked={(answers[question.id] || []).includes(opt)}
+                    onChange={(e) => handleInput(opt, e.target.checked)}
                   />
                 </span>
               </label>

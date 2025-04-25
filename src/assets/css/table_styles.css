@@ -2,11 +2,13 @@
   display: grid;
   place-items: center;
   min-height: 100vh;
+  padding: 0 20px; /* Отступы от краев экрана */
 }
 
 table {
   border-collapse: collapse;
-  width: 1200px;
+  width: 100%; 
+  max-width: 1200px; 
 }
 
 td {
@@ -24,20 +26,27 @@ td {
 .quiz-introduction {
   text-align: center;
   margin: 30px 0;
+  padding: 0 20px; 
 }
 
 .quiz-introduction h2 {
   font-size: 28px;
   color: #333;
+  margin: 0; 
 }
 
 @media (max-width: 600px) {
   .table-container {
     padding: 10px;
-    padding-top: 100px;
+    padding-top: 50px; 
     display: flex;
     justify-content: flex-start;
     overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 500px; 
   }
 }
 
@@ -47,6 +56,11 @@ td {
     display: flex;
     justify-content: center;
     overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 800px; 
   }
 }
 
