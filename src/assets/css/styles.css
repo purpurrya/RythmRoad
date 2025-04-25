@@ -331,7 +331,7 @@ footer {
   }
 }
 
-@media (min-width: 781px) {
+@media (min-width: 780px) {
   .burger {
     display: none;
   }
