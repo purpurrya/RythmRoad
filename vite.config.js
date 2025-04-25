@@ -4,12 +4,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    preserveSymlinks: true,
-  },
-  build: {
-    outDir: 'dist',
-  },
-  server: {
-    historyApiFallback: true,
-  },
+    preserveSymlinks: true, 
+  }
 });
