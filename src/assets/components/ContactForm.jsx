@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useCallback } from 'react';
 import '../css/contact_form.css';
-
 
 const ContactForm = () => {
   const [values, setValues] = useState({
@@ -14,34 +12,21 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
 
-  const validate = () => {
+  const validate = useCallback(() => {
     const errs = {};
-
-    if (!values.name.trim()) {
-      errs.name = 'Имя обязательно';
-    }
-
-    if (!/^(?:\+7|8)\d{10}$/.test(values.phone)) {
-      errs.phone = 'Неверный формат телефона';
-    }
-
-    if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(values.email)) {
-      errs.email = 'Неверный Email';
-    }
-
-    if (!values.message.trim()) {
-      errs.message = 'Сообщение не может быть пустым';
-    }
-
+    if (!values.name.trim()) errs.name = 'Имя обязательно';
+    if (!/^(?:\+7|8)\d{10}$/.test(values.phone)) errs.phone = 'Неверный формат телефона';
+    if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(values.email)) errs.email = 'Неверный Email';
+    if (!values.message.trim()) errs.message = 'Сообщение не может быть пустым';
     return errs;
-  };
+  }, [values]);
 
-  const handleChange = e => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setValues(prev => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
@@ -117,7 +102,7 @@ const ContactForm = () => {
         </div>
       )}
     </section>
-);
+  );
 };
 
 export default ContactForm;

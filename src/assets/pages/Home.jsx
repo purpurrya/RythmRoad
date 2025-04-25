@@ -41,10 +41,12 @@ function Home() {
 
       <section className="main">
         <div className="main-text">
-          <h1>MUSICAL INSTRUMENTS STORE</h1>
-          <div className="line"></div>
+        <h1>MUSICAL INSTRUMENTS STORE</h1>
+          <div className="headline-wrapper">
+            <div className="line"></div>
+          </div>
           <p>Your Melodic Destination:</p>
-          <p> Discover, Dream, and Play On!</p>
+          <p>Discover, Dream, and Play On!</p>
         </div>
         <Slider />
       </section>
