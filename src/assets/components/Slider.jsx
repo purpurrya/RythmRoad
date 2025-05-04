@@ -22,7 +22,17 @@ function Slider({ images = sliderImages }) {
 
   return (
     <div className="slider">
-      <img src={images[current]} alt="slide" className="slider-image" />
+      <div 
+        className="slider-images-wrapper"
+        style={{
+          transform: `translateX(-${current * 100}%)`, 
+        }}
+      >
+        {images.map((image, index) => (
+          <img key={index} src={image} alt={`slide-${index}`} className="slider-image" />
+        ))}
+      </div>
+
       <button className="slider-btn prev" onClick={prevSlide}>&#10094;</button>
       <button className="slider-btn next" onClick={nextSlide}>&#10095;</button>
     </div>

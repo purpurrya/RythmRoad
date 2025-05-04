@@ -50,14 +50,14 @@ function BurgerMenu() {
           <li><Link to="/" className="nav-item">HOME</Link></li>
           <li><Link to="/store" className="nav-item">STORE</Link></li>
           <li><Link to="/table" className="nav-item">ABOUT</Link></li>
-          <li><Link to="#" className="nav-item">CONTACT</Link></li>
+          <li><Link to="/quiz" className="nav-item">CONTACT</Link></li>
           <li>
-            <Link to="#" className="nav-item">
+            <Link to="/cart" className="nav-item">
               <img src={cartImg} alt="cart" className="icon" />
             </Link>
           </li>
           <li>
-            <Link to="#" className="nav-item">
+            <Link to="/profile" className="nav-item">
               <img src={userImg} alt="user" className="icon" />
             </Link>
           </li>

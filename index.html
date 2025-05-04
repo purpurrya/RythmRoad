@@ -2,11 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebPractik</title>
+    <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <noscript>
+      <style>
+        .noscript-warning {
+          position: fixed; 
+          top: 50%; 
+          left: 50%;
+          transform: translate(-50%, -50%); 
+          background-color: #222;
+          color: #D1EAFA;
+          font-family: 'Poppins', sans-serif;
+          text-align: center;
+          padding: 20px;
+          font-size: 18px;
+          border-radius: 10px; 
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+        }
+
+        .noscript-warning strong {
+          color: #7ec8ff;
+        }
+      </style>
+      <div class="noscript-warning">
+        <h2>JavaScript is Disabled!</h2>
+        <p><strong>Attention:</strong> To experience the full functionality of our website, please enable JavaScript in your browser settings.</p>
+        <p>We apologize for any inconvenience!</p>
+      </div>
+    </noscript>
   </body>
 </html>
