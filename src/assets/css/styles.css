@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-html, * {
+*,
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,28 +17,6 @@ header {
   width: 100%;
   position: relative;
   flex-wrap: wrap;
-}
-
-.headline-wrapper {
-  text-align: center;
-  margin: 0 auto;
-}
-
-.headline-wrapper h1 {
-  margin: 0;
-}
-
-.line,
-.main-text hr {
-  height: 2px;
-  background-color: #0a2a5c;
-  margin: 10px 0;
-  width: 80px;
-}
-
-.main-text hr {
-  border: 3px solid #0a2a5c;
-  margin: 20px 0;
 }
 
 .logo-title {
@@ -58,7 +37,7 @@ header {
 }
 
 nav {
-  display: none;
+  display: flex;
 }
 
 nav ul {
@@ -82,7 +61,7 @@ nav ul li a::after {
   position: absolute;
   left: 0;
   bottom: -4px;
-  width: 0%;
+  width: 0;
   height: 2px;
   background-color: #D1EAFA;
   transition: width 0.3s ease;
@@ -93,6 +72,34 @@ nav ul li a.active::after {
   width: 100%;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  padding: 10px 0;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.dropdown-content li {
+  padding: 5px 15px;
+}
+
+.dropdown-content li a {
+  color: #fff;
+  font-size: 16px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .icon {
   height: 24px;
   width: 24px;
@@ -101,18 +108,22 @@ nav ul li a.active::after {
 .main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #7ec8ff;
   padding: 40px 10px;
 }
 
 .main-text {
-  flex: 1;
-  width: 50%;
-  color: #0a2a5c;
-  text-align: left;
-  margin: 80px 0 80px 80px;
+  flex: 0 0 40%;
+  width: 40%;
+}
+
+.main-slider {
+  flex: 0 0 60%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
 }
 
 .main-text h1 {
@@ -126,6 +137,20 @@ nav ul li a.active::after {
 .main-text p {
   font-size: 28px;
   line-height: 1.5;
+}
+
+.headline-wrapper {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.line,
+.main-text hr {
+  height: 2px;
+  background-color: #0a2a5c;
+  margin: 10px auto;
+  width: 80px;
+  max-width: 100%;
 }
 
 .contact-container {
@@ -193,6 +218,7 @@ footer {
   justify-content: center;
   gap: 15px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .footer-nav a {
@@ -205,7 +231,7 @@ footer {
 }
 
 .burger {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
@@ -225,13 +251,36 @@ footer {
   background-color: #7ec8ff;
 }
 
-@media (max-width: 780px) {
-  .burger {
-    display: flex;
+@media (max-width: 1140px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
+  .main-text {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .main-slider {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .slider {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 780px) {
   nav {
     display: none;
+  }
+
+  .burger {
+    display: flex;
   }
 
   .burger.active + nav {
@@ -269,44 +318,9 @@ footer {
     padding: 10px;
     width: 90%;
   }
-  
-  .table-container {
-    padding: 10px;
-    padding-top: 50px;
-    display: flex;
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
 
-  table {
-    width: 100%;
-    min-width: 500px;
-  }
-  
-  .quiz-container {
-    width: 90%;
-    margin: 30px auto;
-    padding: 30px;
-  }
-
-  .quiz-question {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  .quiz-input {
-    font-size: 18px;
-    padding: 12px 16px;
-  }
-
-  .quiz-options label {
-    font-size: 18px;
-    padding: 12px 16px;
-  }
-
-  .quiz-button {
-    min-width: 200px;
-    padding: 12px 18px;
+  .line {
+    width: 60px;
   }
 }
 
@@ -323,6 +337,10 @@ footer {
     font-size: 18px;
   }
 
+  .line {
+    width: 40px;
+  }
+
   footer {
     padding: 10px;
   }
@@ -335,118 +353,75 @@ footer {
     font-size: 14px;
   }
 
-  .quiz-container {
-    width: 90%;
-    padding: 20px;
-    margin: 10px auto;
-  }
-
-  .quiz-question {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-
-  .quiz-input {
-    font-size: 16px;
-    padding: 10px 14px;
-  }
-
-  .quiz-options label {
-    font-size: 16px;
-    padding: 10px 14px;
-  }
-
-  .quiz-footer {
-    margin-top: 25px;
-  }
-
-  .quiz-button {
-    min-width: 160px;
-    padding: 10px 15px;
-  }
-
-  .table-container {
+  .contact-container {
     padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    min-width: 500px;
+    width: 90%;
   }
 }
 
-@media (min-width: 780px) {
-  .burger {
-    display: flex;
-  }
-
-  nav {
-    display: flex;
-  }
-
-  nav ul {
-    flex-direction: row;
-  }
-
-  .main-text {
-    width: 50%;
+@media (min-width: 1141px) {
+  .main .main-text {
     text-align: left;
+    padding-left: 40px;
+  }
+
+  .main .line {
+    margin: 10px 0;
   }
 }
 
-@media (max-width: 1024px) {
-  table {
-    min-width: 800px;
-    max-height: 70vh;
-  }
-
-  .quiz-container {
-    width: 80%;
-    padding: 30px;
-    margin: 30px auto;
-  }
-
-  .quiz-question {
-    font-size: 26px;
-    margin-bottom: 25px;
-  }
-
-  .quiz-input {
-    font-size: 18px;
-    padding: 14px 18px;
-  }
-
-  .quiz-options label {
-    font-size: 18px;
-    padding: 14px 18px;
-  }
-
-  .quiz-button {
-    min-width: 250px;
-    padding: 14px 22px;
-  }
-}
-
-@media (max-width: 1640px) {
-  .main-text {
-    width: 100%;
+@media (min-width: 768px) and (max-width: 1366px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin: 20px auto;
+    padding: 30px 20px;
   }
 
-  .line {
-    width: 80px;
-    margin: 10px auto;
+  .main-text {
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .main-text h1 {
+    font-size: 48px;
+  }
+
+  .main-text p {
+    font-size: 22px;
+  }
+
+  .main-slider {
+    width: 100%;
+    justify-content: center;
   }
 
   .slider {
-    position: relative;
-    top: auto;
-    right: auto;
     width: 80%;
-    margin: 20px auto 0;
+  }
+
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  .logo-title h1 {
+    font-size: 22px;
+  }
+
+  footer {
+    padding: 15px;
+  }
+
+  .footer-nav a {
+    font-size: 16px;
+  }
+
+  .contact-container {
+    width: 80%;
+    padding: 20px;
   }
 }
