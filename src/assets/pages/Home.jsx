@@ -1,9 +1,8 @@
-import React from 'react'; 
 import { Link } from 'react-router-dom';
 
-import ContactForm from '../components/ContactForm.jsx';
-import Slider from '../components/Slider.jsx';
-import BurgerMenu from '../components/BurgerMenu.jsx';
+import ContactForm from '../components/ContactForm.js';
+import Slider from '../components/Slider.js';
+
 
 import guitarImg from '../images/guitar.png';
 import cartImg from '../images/cart.png';
@@ -22,24 +21,22 @@ return (
     <nav> 
       <ul className="nav-list"> 
         <li className="dropdown"> 
-          <Link to="/">HOME</Link> 
+          <Link to="/">HOMEPAGE</Link> 
           <ul className="dropdown-content"> 
-            <li><Link to="/home/latest">Latest</Link></li> 
-            <li><Link to="/home/news">News</Link></li> 
+            <li><Link to="/homepage/latest">Latest</Link></li> 
+            <li><Link to="/homepage/news">News</Link></li> 
           </ul> 
         </li> 
         <li className="dropdown"> 
-          <Link to="/store">STORE</Link> 
+          <Link to="/marketplace">MARKETPLACE</Link> 
           <ul className="dropdown-content"> 
-            <li><Link to="/store/guitars">Guitars</Link></li> 
-            <li><Link to="/store/drums">Drums</Link></li> 
-            <li><Link to="/store/keyboards">Keyboards</Link></li> 
+            <li><Link to="/marketplace/guitars">Guitars</Link></li> 
+            <li><Link to="/marketplace/drums">Drums</Link></li> 
           </ul> 
         </li> 
         <li className="dropdown"> 
-          <Link to="/table">ABOUT</Link> 
+          <Link to="/table">ABOUT US</Link> 
           <ul className="dropdown-content"> 
-            <li><Link to="/table/history">History</Link></li> 
             <li><Link to="/quiz">Quiz</Link></li> 
             <li><Link to="/table">Table</Link></li>
           </ul> 
@@ -59,7 +56,6 @@ return (
         </li> 
       </ul> 
     </nav> 
-    {/* <BurgerMenu />  */}
   </header>
 
   <section className="main">
@@ -80,9 +76,9 @@ return (
 
   <footer>
     <nav className="footer-nav">
-      <Link to="/">Home</Link>
-      <Link to="/store">Store</Link>
-      <Link to="/table">About</Link>
+      <Link to="/">Homepage</Link>
+      <Link to="/marketplace">Marketplace</Link>
+      <Link to="/table">About us</Link>
       <Link to="/promo">Promo</Link>
       <Link to="/quiz">Contact</Link>
     </nav>

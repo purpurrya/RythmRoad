@@ -16,14 +16,12 @@ header {
   justify-content: space-between;
   width: 100%;
   position: relative;
-  flex-wrap: wrap;
 }
 
 .logo-title {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex-shrink: 0;
 }
 
 .logo-title img {
@@ -34,6 +32,15 @@ header {
   font-size: 24px;
   color: #D1EAFA;
   font-weight: 400;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -72,6 +79,7 @@ nav ul li a.active::after {
   width: 100%;
 }
 
+/* Стили для выпадающего меню */
 .dropdown {
   position: relative;
 }
@@ -80,29 +88,93 @@ nav ul li a.active::after {
   display: none;
   position: absolute;
   background-color: #333;
-  padding: 10px 0;
+  border-radius: 6px;
+  padding: 8px 0;
   top: 100%;
   left: 0;
   z-index: 1000;
-  min-width: 150px;
+  min-width: 70px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
 .dropdown-content li {
-  padding: 5px 15px;
+  padding: 8px 20px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content li:hover {
+  background-color: #444;
 }
 
 .dropdown-content li a {
-  color: #fff;
+  color: #D1EAFA;
   font-size: 16px;
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dropdown-content li a:hover {
+  color: #7ec8ff;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* Анимация для иконок корзины и пользователя */
 .icon {
   height: 24px;
   width: 24px;
+  transition: transform 0.2s;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+/* Убираем подчеркивание для основных пунктов меню */
+nav ul li:not(:last-child):not(:nth-last-child(2)) a::after {
+  display: none;
+}
+
+nav ul li a {
+  position: relative;
+  padding-bottom: 5px;
+  display: inline-block; /* необходимо для transform */
+  transition: transform 0.2s ease; /* анимация увеличения */
+}
+
+/* Увеличение при наведении для всех пунктов */
+nav ul li a:hover {
+  transform: scale(1.1);
+}
+
+/* Подчеркивание ТОЛЬКО для иконок (корзина и пользователь) */
+nav ul li:last-child a::after,
+nav ul li:nth-last-child(2) a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #7ec8ff;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+/* Активация подчеркивания только для иконок */
+nav ul li:last-child a:hover::after,
+nav ul li:nth-last-child(2) a:hover::after,
+nav ul li:last-child a.active::after,
+nav ul li:nth-last-child(2) a.active::after {
+  width: 100%;
 }
 
 .main {
@@ -230,26 +302,7 @@ footer {
   text-decoration: underline;
 }
 
-.burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%);
-}
-
-.burger span {
-  width: 25px;
-  height: 3px;
-  background-color: #D1EAFA;
-}
-
-.burger.active span {
-  background-color: #7ec8ff;
-}
+/* Удалены все стили, связанные с бургер-меню */
 
 @media (max-width: 1140px) {
   .main {
@@ -275,29 +328,27 @@ footer {
 }
 
 @media (max-width: 780px) {
-  nav {
-    display: none;
+  /* Удалены стили для бургер-меню */
+  
+  /* Уменьшаем отступы и размеры текста для мобильных устройств */
+  header {
+    padding: 10px 15px;
   }
-
-  .burger {
-    display: flex;
-  }
-
-  .burger.active + nav {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: #222;
-    padding: 10px;
-    gap: 10px;
-  }
-
+  
   nav ul {
-    flex-direction: column;
     gap: 10px;
-    text-align: center;
+  }
+  
+  nav ul li a {
+    font-size: 14px;
+  }
+  
+  .logo-title h1 {
+    font-size: 18px;
+  }
+  
+  .logo-title img {
+    height: 30px;
   }
 
   .main-text {
@@ -307,11 +358,11 @@ footer {
   }
 
   .main-text h1 {
-    font-size: 48px;
+    font-size: 36px;
   }
 
   .main-text p {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .contact-container {
@@ -325,16 +376,26 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .logo-title h1 {
-    font-size: 18px;
+  /* Дополнительные стили для очень маленьких экранов */
+  nav ul {
+    gap: 8px;
+  }
+  
+  nav ul li a {
+    font-size: 12px;
+  }
+  
+  .icon {
+    height: 20px;
+    width: 20px;
   }
 
   .main-text h1 {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   .main-text p {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .line {
@@ -347,6 +408,7 @@ footer {
 
   .footer-nav {
     flex-direction: column;
+    gap: 5px;
   }
 
   .footer-nav a {
@@ -355,7 +417,7 @@ footer {
 
   .contact-container {
     padding: 10px;
-    width: 90%;
+    width: 95%;
   }
 }
 
