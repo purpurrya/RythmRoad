@@ -1,14 +1,43 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .contact-container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1rem;
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 0 20px;
   position: relative;
   font-family: 'Segoe UI', sans-serif;
 }
 
+.contact-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .form-group {
   display: flex;
-  gap: 1rem;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.form-group input {
+  flex: 1;
+  min-width: 200px;
 }
 
 .field {
@@ -19,13 +48,13 @@
   flex: 1;
 }
 
-input[type="text"],
-input[type="email"],
-textarea,
-button {
-  padding: 0.6rem;
-  border-radius: 8px;
-  font-size: 1rem;
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
@@ -47,6 +76,7 @@ textarea:focus {
 textarea {
   resize: vertical;
   min-height: 100px;
+  height: 100px;
   padding: 0.6rem;
 }
 
@@ -63,15 +93,18 @@ textarea {
 }
 
 button {
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  background-color: #0a2a5c;
-  color: #fff;
+  background-color: #7ec8ff;
+  color: #0a2a5c;
+  padding: 10px;
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #163e87;
+  background-color: #5ea6df;
 }
 
 .modal-overlay {
@@ -105,14 +138,14 @@ button:hover {
   color: #0a2a5c;
 }
 
-.modal-content .username {
-  color: #0a2a5c;
-}
-
 .modal-content p {
   font-size: 1rem;
   margin-bottom: 1.5rem;
   color: #333;
+}
+
+.modal-content .username {
+  color: #0a2a5c;
 }
 
 .restart-btn {
@@ -122,15 +155,4 @@ button:hover {
 
 .restart-btn:hover {
   background-color: #57acee;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
