@@ -16,27 +16,26 @@ const ContactForm = () => {
   const validateField = useCallback((name, value) => {
     let error = '';
 
-    switch (name) {
-      case 'name':
-        if (!value.trim()) error = 'Name is required';
-        break;
-      case 'phone':
-        if (!/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(value)) {
-          // error = 'Format: +7 (123) 456-78-90';
-          error = 'Invalid phone number format';
-        }
-        break;
-      case 'email':
-        if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(value)) {
-          error = 'Invalid email address';
-        }
-        break;
-      case 'message':
-        if (!value.trim()) error = 'Message cannot be empty';
-        break;
-      default:
-        break;
-    }
+  switch (name) {
+    case 'name':
+      if (!value.trim()) error = 'We\'d like to know your name!';
+      break;
+    case 'phone':
+      if (!/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(value)) {
+        error = 'Please use this phone format: +7 (123) 456-78-90';
+      }
+      break;
+    case 'email':
+      if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(value)) {
+        error = 'Oops! That doesn\'t look like a valid email :(';
+      }
+      break;
+    case 'message':
+      if (!value.trim()) error = 'What would you like to tell us?';
+      break;
+    default:
+      break;
+  }
 
     return error;
   }, []);

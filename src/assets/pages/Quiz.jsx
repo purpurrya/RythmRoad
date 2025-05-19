@@ -5,6 +5,8 @@ import '../css/styles.css';
 import '../css/table_styles.css';
 import '../css/quiz.css';
 
+import BurgerMenu from '../components/BurgerMenu.js';
+
 import guitarImg from '../images/guitar.png';
 import cartImg from '../images/cart.png';
 import userImg from '../images/user.png';
@@ -120,141 +122,148 @@ function Quiz() {
   };
 
   return (
-    <div className="page-wrapper">
-      <header> 
-        <div className="logo-title"> 
-          <img src={guitarImg} alt="guitar" /> 
-          <h1>Rythm Road</h1> 
-        </div> 
-        <nav> 
-          <ul className="nav-list"> 
-            <li className="dropdown"> 
-              <Link to="/">HOMEPAGE</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/homepage/latest">Latest</Link></li> 
-                <li><Link to="/homepage/news">News</Link></li> 
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/marketplace">MARKETPLACE</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/marketplace/guitars">Guitars</Link></li> 
-                <li><Link to="/marketplace/drums">Drums</Link></li> 
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/table">ABOUT US</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/quiz">Quiz</Link></li> 
-                <li><Link to="/table">Table</Link></li>
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/contact">CONTACT</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/contact/email">Email</Link></li> 
-                <li><Link to="/contact/phone">Phone</Link></li> 
-              </ul> 
-            </li> 
-            <li> 
-              <Link to="/cart"><img src={cartImg} alt="cart" className="icon" /></Link> 
-            </li> 
-            <li> 
-              <Link to="/profile"><img src={userImg} alt="user" className="icon" /></Link> 
-            </li> 
-          </ul> 
-        </nav> 
-      </header>
-  
-      <div className="quiz-introduction">
-        <h2>Take a short quiz and test your knowledge of the music world!</h2>
-      </div>
-  
-      <div className={`quiz-container ${question.type === 'text' ? 'name-stage' : ''}`}>
-        <div className="quiz-content">
-          <div className="quiz-question">
-            <p>{question.text}</p>
-  
-            {question.type === 'text' && (
-              <input
-                className="quiz-input"
-                type="text"
-                value={name}
-                onChange={(e) => handleInput(e.target.value)}
-                placeholder="Enter your name"
-              />
-            )}
-  
-            {question.type === 'single' && (
-              <div className="quiz-options">
-                {question.options.map((opt) => (
-                  <label key={opt}>
-                    <span className="option-text">{opt}</span>
-                    <span className="option-control">
-                      <input
-                        type="radio"
-                        name={`q${question.id}`}
-                        value={opt}
-                        checked={answers[question.id] === opt}
-                        onChange={() => handleInput(opt)}
-                      />
-                    </span>
-                  </label>
-                ))}
-              </div>
-            )}
-  
-            {question.type === 'multiple' && (
-              <div className="quiz-options">
-                {question.options.map((opt) => (
-                  <label key={opt}>
-                    <span className="option-text">{opt}</span>
-                    <span className="option-control">
-                      <input
-                        type="checkbox"
-                        name={`q${question.id}`}
-                        value={opt}
-                        checked={(answers[question.id] || []).includes(opt)}
-                        onChange={(e) => handleInput(opt, e.target.checked)}
-                      />
-                    </span>
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-  
-        <div className="quiz-footer">
-          <button className="quiz-button" onClick={next}>
-            {current < questions.length - 1 ? 'Next →' : 'Finish'}
-          </button>
-        </div>
-  
-        {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Thank you for participating, {name}!</h2>
-              <p>Your score is: {finalScore} out of {questions.length - 1}</p>
-              <button className="quiz-button" onClick={closeModal}>Restart</button>
+    <>
+      <div dangerouslySetInnerHTML={{
+        __html: `
+        <noscript>
+          <div class='noscript-container'>
+            <div class='noscript-content'>
+              <h2 class='noscript-header'>JavaScript is Disabled!</h2>
+              <p class='noscript-message'>
+                <strong>Attention:</strong> To experience the full functionality of our website, please enable JavaScript in your browser settings.
+              </p>
+              <p class='noscript-note'>We apologize for any inconvenience!</p>
             </div>
           </div>
-        )}
-      </div>
-  
+        </noscript>
+      `}} />
 
-      <footer>
-        <nav className="footer-nav">
-          <Link to="/">Homepage</Link>
-          <Link to="/marketplace">Marketplace</Link>
-          <Link to="/table">About us</Link>
-          <Link to="/promo">Promo</Link>
-          <Link to="/quiz">Contact</Link>
-        </nav>
-        <p>&copy; 2025 All rights reserved - Rhythm Road</p>
-      </footer>
-    </div>
+      <div className="page-wrapper">
+        <header>
+          <div className="logo-title">
+            <img src={guitarImg} alt="guitar" />
+            <h1>Rythm Road</h1>
+          </div>
+          <BurgerMenu />
+          <nav className="desktop-nav">
+            <ul className="nav-list">
+              <li><Link to="/">HOMEPAGE</Link></li>
+              <li className="dropdown">
+                <Link to="/marketplace">MARKETPLACE</Link>
+                <ul className="dropdown-content">
+                  <li><Link to="/marketplace/guitars">Guitars</Link></li>
+                  <li><Link to="/marketplace/drums">Drums</Link></li>
+                </ul>
+              </li>
+              <li className="dropdown">
+                <Link to="/table">ABOUT US</Link>
+                <ul className="dropdown-content">
+                  <li><Link to="/quiz">Quiz</Link></li>
+                  <li><Link to="/table">Table</Link></li>
+                </ul>
+              </li>
+              <li className="dropdown">
+                <Link to="/contact">CONTACT</Link>
+                <ul className="dropdown-content">
+                  <li><Link to="/contact/email">Email</Link></li>
+                  <li><Link to="/contact/phone">Phone</Link></li>
+                </ul>
+              </li>
+              <li><Link to="/cart"><img src={cartImg} alt="cart" className="icon" /></Link></li>
+              <li><Link to="/profile"><img src={userImg} alt="user" className="icon" /></Link></li>
+            </ul>
+          </nav>
+        </header>
+
+        <div className="quiz-introduction">
+          <h2>Take a short quiz and test your knowledge of the music world!</h2>
+        </div>
+
+        <div className={`quiz-container ${question.type === 'text' ? 'name-stage' : ''}`}>
+          <div className="quiz-content">
+            <div className="quiz-question">
+              <p>{question.text}</p>
+
+              {question.type === 'text' && (
+                <input
+                  className="quiz-input"
+                  type="text"
+                  value={name}
+                  onChange={(e) => handleInput(e.target.value)}
+                  placeholder="Enter your name"
+                />
+              )}
+
+              {question.type === 'single' && (
+                <div className="quiz-options">
+                  {question.options.map((opt) => (
+                    <label key={opt}>
+                      <span className="option-text">{opt}</span>
+                      <span className="option-control">
+                        <input
+                          type="radio"
+                          name={`q${question.id}`}
+                          value={opt}
+                          checked={answers[question.id] === opt}
+                          onChange={() => handleInput(opt)}
+                        />
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+
+              {question.type === 'multiple' && (
+                <div className="quiz-options">
+                  {question.options.map((opt) => (
+                    <label key={opt}>
+                      <span className="option-text">{opt}</span>
+                      <span className="option-control">
+                        <input
+                          type="checkbox"
+                          name={`q${question.id}`}
+                          value={opt}
+                          checked={(answers[question.id] || []).includes(opt)}
+                          onChange={(e) => handleInput(opt, e.target.checked)}
+                        />
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="quiz-footer">
+            <button className="quiz-button" onClick={next}>
+              {current < questions.length - 1 ? 'Next →' : 'Finish'}
+            </button>
+          </div>
+
+          {isModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <h2>Thank you for participating, {name}!</h2>
+                <p>Your score is: {finalScore} out of {questions.length - 1}</p>
+                <button className="quiz-button" onClick={closeModal}>Restart</button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <footer>
+          <nav className="footer-nav">
+            <Link to="/">Homepage</Link>
+            <Link to="/marketplace">Marketplace</Link>
+            <Link to="/table">About us</Link>
+            <Link to="/promo">Promo</Link>
+            <Link to="/quiz">Contact</Link>
+          </nav>
+          <p>&copy; 2025 All rights reserved - Rhythm Road</p>
+        </footer>
+      </div>
+    </>
   );
-}  
+}
 
 export default Quiz;

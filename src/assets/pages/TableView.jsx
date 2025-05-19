@@ -1,8 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import '../css/styles.css';
 import '../css/table_styles.css';
+
+import BurgerMenu from '../components/BurgerMenu.js';
 
 import guitarImg from '../images/guitar.png';
 import cartImg from '../images/cart.png';
@@ -23,49 +24,46 @@ function TableView() {
         </div>
       </noscript>
 
-      <header> 
-        <div className="logo-title"> 
-          <img src={guitarImg} alt="guitar" /> 
-          <h1>Rythm Road</h1> 
-        </div> 
-        <nav> 
-          <ul className="nav-list"> 
-            <li className="dropdown"> 
-              <Link to="/">HOMEPAGE</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/homepage/latest">Latest</Link></li> 
-                <li><Link to="/homepage/news">News</Link></li> 
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/marketplace">MARKETPLACE</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/marketplace/guitars">Guitars</Link></li> 
-                <li><Link to="/marketplace/drums">Drums</Link></li> 
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/table">ABOUT US</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/quiz">Quiz</Link></li> 
+      <header>
+        <div className="logo-title">
+          <img src={guitarImg} alt="guitar" />
+          <h1>Rythm Road</h1>
+        </div>
+        <BurgerMenu />
+        <nav className="desktop-nav">
+          <ul className="nav-list">
+            <li>
+              <Link to="/">HOMEPAGE</Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/marketplace">MARKETPLACE</Link>
+              <ul className="dropdown-content">
+                <li><Link to="/marketplace/guitars">Guitars</Link></li>
+                <li><Link to="/marketplace/drums">Drums</Link></li>
+              </ul>
+            </li>
+            <li className="dropdown">
+              <Link to="/table">ABOUT US</Link>
+              <ul className="dropdown-content">
+                <li><Link to="/quiz">Quiz</Link></li>
                 <li><Link to="/table">Table</Link></li>
-              </ul> 
-            </li> 
-            <li className="dropdown"> 
-              <Link to="/contact">CONTACT</Link> 
-              <ul className="dropdown-content"> 
-                <li><Link to="/contact/email">Email</Link></li> 
-                <li><Link to="/contact/phone">Phone</Link></li> 
-              </ul> 
-            </li> 
-            <li> 
-              <Link to="/cart"><img src={cartImg} alt="cart" className="icon" /></Link> 
-            </li> 
-            <li> 
-              <Link to="/profile"><img src={userImg} alt="user" className="icon" /></Link> 
-            </li> 
-          </ul> 
-        </nav> 
+              </ul>
+            </li>
+            <li className="dropdown">
+              <Link to="/contact">CONTACT</Link>
+              <ul className="dropdown-content">
+                <li><Link to="/contact/email">Email</Link></li>
+                <li><Link to="/contact/phone">Phone</Link></li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/cart"><img src={cartImg} alt="cart" className="icon" /></Link>
+            </li>
+            <li>
+              <Link to="/profile"><img src={userImg} alt="user" className="icon" /></Link>
+            </li>
+          </ul>
+        </nav>
       </header>
 
       <div className="table-container">

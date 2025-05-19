@@ -21,14 +21,20 @@
 
 input[type="text"],
 input[type="email"],
-textarea {
-  width: 100%;
+textarea,
+button {
   padding: 0.6rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
   font-size: 1rem;
-  transition: border 0.3s ease;
+  transition: all 0.3s ease;
   box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
 }
 
 input[type="text"]:focus,
@@ -41,6 +47,7 @@ textarea:focus {
 textarea {
   resize: vertical;
   min-height: 100px;
+  padding: 0.6rem;
 }
 
 .error {
@@ -53,7 +60,6 @@ textarea {
   font-size: 0.85rem;
   text-align: left;
   width: 100%;
-  box-sizing: border-box;
 }
 
 button {
@@ -62,9 +68,6 @@ button {
   background-color: #0a2a5c;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -114,13 +117,7 @@ button:hover {
 
 .restart-btn {
   background-color: #6ec1ff;
-  border: none;
   padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .restart-btn:hover {
