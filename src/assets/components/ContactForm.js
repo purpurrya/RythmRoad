@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-
 import '../css/contact_form.css';
 
 const ContactForm = () => {
@@ -16,26 +15,32 @@ const ContactForm = () => {
   const validateField = useCallback((name, value) => {
     let error = '';
 
-  switch (name) {
-    case 'name':
-      if (!value.trim()) error = 'We\'d like to know your name!';
-      break;
-    case 'phone':
-      if (!/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(value)) {
-        error = 'Please use this phone format: +7 (123) 456-78-90';
-      }
-      break;
-    case 'email':
-      if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(value)) {
-        error = 'Oops! That doesn\'t look like a valid email :(';
-      }
-      break;
-    case 'message':
-      if (!value.trim()) error = 'What would you like to tell us?';
-      break;
-    default:
-      break;
-  }
+    switch (name) {
+      case 'name':
+        if (!value.trim()) {
+          error = 'We\'d like to know your name!';
+        } else if (value.trim().length < 2) {
+          error = 'Name should be at least 2 characters long';
+        } else if (!/^[a-zA-Zа-яА-ЯёЁ\s-']+$/.test(value.trim())) {
+          error = 'Name should contain only letters, spaces, hyphens or apostrophes';
+        }
+        break;
+      case 'phone':
+        if (!/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(value)) {
+          error = 'Please use this phone format: +7 (123) 456-78-90';
+        }
+        break;
+      case 'email':
+        if (!/^[\w.-]+@[\w.-]+\.\w{2,}$/.test(value)) {
+          error = 'Oops! That doesn\'t look like a valid email :(';
+        }
+        break;
+      case 'message':
+        if (!value.trim()) error = 'What would you like to tell us?';
+        break;
+      default:
+        break;
+    }
 
     return error;
   }, []);
